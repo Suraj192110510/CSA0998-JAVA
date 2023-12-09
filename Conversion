@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+class Conversion
+{
+    Scanner abc = new Scanner(System.in);
+    void binary()
+    {
+        int n1 = abc.nextInt();
+        int a;
+        String c = "";
+        while(n1 > 0)
+        {
+            a = n1 % 2;
+            c = Integer.toString(a) + c;
+            n1 = n1 / 2;
+        }
+        System.out.println(c);
+    }
+
+    void octal()
+    {
+        int n2 = abc.nextInt();
+        int a2;
+        String c2 = "";
+        while(n2 > 0)
+        {
+            a2 = n2 % 8;
+            c2 = Integer.toString(a2) + c2;
+            n2 = n2 / 8;
+        }
+        System.out.println(c2);
+    }
+
+    public static void main(String args[])
+    {
+        Conversion abc1 = new Conversion();
+        abc1.binary();
+        abc1.octal();
+    }
+}
