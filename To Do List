@@ -1,0 +1,74 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ToDoList {
+    private static ArrayList<String> tasks = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n--- To-Do List Menu ---");
+            System.out.println("1. Add Task");
+            System.out.println("2. Mark Task as Complete");
+            System.out.println("3. View Tasks");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice (1-4): ");
+
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    addTask(scanner);
+                    break;
+                case 2:
+                    markTaskAsComplete(scanner);
+                    break;
+                case 3:
+                    viewTasks();
+                    break;
+                case 4:
+                    System.out.println("Exiting the program. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+            }
+
+        } while (choice != 4);
+
+        scanner.close();
+    }
+
+    private static void addTask(Scanner scanner) {
+        System.out.print("Enter the task: ");
+        String task = scanner.nextLine();
+        tasks.add(task);
+        System.out.println("Task added: " + task);
+    }
+
+    private static void markTaskAsComplete(Scanner scanner) {
+        System.out.print("Enter the task number to mark as complete: ");
+        int taskNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+
+        if (taskNumber >= 1 && taskNumber <= tasks.size()) {
+            String completedTask = tasks.remove(taskNumber - 1);
+            System.out.println("Task marked as complete: " + completedTask);
+        } else {
+            System.out.println("Invalid task number. Please enter a valid task number.");
+        }
+    }
+
+    private static void viewTasks() {
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks in the To-Do List.");
+        } else {
+            System.out.println("\n--- To-Do List ---");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
+        }
+    }
+}
